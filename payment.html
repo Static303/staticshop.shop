@@ -75,6 +75,10 @@
             bottom: 0;
             width: 100%;
         }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -89,6 +93,7 @@
             <h3>13,600 V-Bucks Account</h3>
             <p>Price: €32.99</p>
             <input type="email" id="customer-email" class="email-input" placeholder="Enter your email" required>
+            <div class="error" id="error-message" style="display: none;"></div> <!-- Error message for invalid email -->
             <div id="paypal-button-container"></div>
         </div>
     </section>
@@ -107,13 +112,27 @@
             emailjs.init("mnMQx2uaOLIBkwvj6"); // Replace with your Public Key
         })();
 
+        // Email validation function
+        function validateEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex pattern
+            return emailPattern.test(email);
+        }
+
         paypal.Buttons({
             createOrder: function(data, actions) {
                 const email = document.getElementById('customer-email').value;
-                if (!email) {
-                    alert("Please enter your email.");
-                    return;
+                const errorMessage = document.getElementById('error-message');
+
+                // Clear previous error message
+                errorMessage.style.display = 'none';
+
+                // Validate email
+                if (!validateEmail(email)) {
+                    errorMessage.textContent = 'Please enter a valid email address.';
+                    errorMessage.style.display = 'block';
+                    return; // Prevent form submission
                 }
+
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
