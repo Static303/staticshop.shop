@@ -11,11 +11,11 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Dark background */
+            background-color: #0d0d0d; /* Darker background */
             color: #f4f4f4; /* Light text color */
         }
         header {
-            background: #333; /* Darker header */
+            background: #1a1a1a; /* Darker header */
             color: #fff;
             padding: 10px 0;
             text-align: center;
@@ -24,9 +24,9 @@
         section {
             padding: 20px;
             margin: 20px;
-            background: #2c2c2c; /* Dark section background */
+            background: #1f1f1f; /* Dark section background */
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         h2 {
             color: #ffcc00; /* Highlight section title */
@@ -38,34 +38,28 @@
         }
         .purchase-button, .info-button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 5px;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
             text-decoration: none; /* No underline */
-            color: white;
+            color: #fff; /* White text */
             cursor: pointer; /* Pointer cursor on hover */
             margin-top: 15px; /* Added margin for spacing */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background-color: #000; /* Black button background */
+            border: 2px solid #fff; /* White border for the buttons */
+            text-transform: uppercase; /* Capitalize button text */
         }
-        .purchase-button {
-            background-color: #28a745; /* Green color */
-        }
-        .purchase-button:hover {
-            background-color: #218838; /* Darker shade for hover effect */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-        .info-button {
-            background-color: #007bff; /* Blue color for More Info button */
-            margin-left: 10px;
-        }
-        .info-button:hover {
-            background-color: #0056b3; /* Darker shade for hover effect on info button */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        .purchase-button:hover, .info-button:hover {
+            background-color: #fff; /* White background on hover */
+            color: #000; /* Black text on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
         }
         footer {
             text-align: center;
             padding: 10px 0;
-            background: #333; /* Dark footer */
+            background: #1a1a1a; /* Dark footer */
             position: relative;
             bottom: 0;
             width: 100%;
