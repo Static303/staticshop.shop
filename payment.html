@@ -6,40 +6,43 @@
     <title>Payment - Static Shop</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet"> <!-- Added new font -->
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Oswald', sans-serif; /* Changed font to Oswald */
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #1a1a1a, #333);
-            color: #f4f4f4;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
         }
         header {
-            background: #333;
-            color: #fff;
+            background: #111; /* Darker header */
+            color: #ffcc00;
             padding: 10px 0;
             text-align: center;
+            text-transform: uppercase; /* Capitalize text */
         }
         section {
             padding: 20px;
             margin: 20px;
-            background: #2c2c2c;
+            background: #222; /* Dark section background */
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2); /* Light shadow */
             animation: fadeIn 1s ease;
         }
         .product h3 {
-            color: #ffcc00;
+            color: #ffcc00; /* Yellow for emphasis */
+            text-transform: uppercase; /* Capitalize text */
         }
         .email-input {
             padding: 10px;
             border-radius: 5px;
-            border: none;
+            border: 2px solid #444; /* Dark border */
             width: 100%;
             margin-top: 10px;
-            background: #444;
-            color: #fff;
-            margin-bottom: 15px; /* Added margin to create space below */
+            background: #333; /* Darker input background */
+            color: #fff; /* White text */
+            margin-bottom: 15px; /* Space below */
         }
         .email-input:focus {
             outline: none;
@@ -57,7 +60,8 @@
             cursor: pointer;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin-top: 15px; /* Added margin for spacing */
+            margin-top: 15px; /* Space for spacing */
+            text-transform: uppercase; /* Capitalize button text */
         }
         .purchase-button:hover {
             background-color: #218838;
@@ -65,15 +69,16 @@
             text-decoration: underline;
         }
         #paypal-button-container {
-            margin-top: 15px; /* Added margin to create space above the PayPal button */
+            margin-top: 15px; /* Space above PayPal button */
         }
         footer {
             text-align: center;
             padding: 10px 0;
-            background: #333;
+            background: #111; /* Dark footer */
             position: relative;
             bottom: 0;
             width: 100%;
+            color: #ffcc00; /* Yellow text */
         }
         .error {
             color: red;
