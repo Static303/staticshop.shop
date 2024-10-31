@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Static Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a1a1a, #333);
+            color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background: #2c2c2c;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease;
+        }
+        .product h3 {
+            color: #ffcc00;
+        }
+        .email-input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            margin-top: 10px;
+            background: #444;
+            color: #fff;
+            margin-bottom: 15px; /* Added margin to create space below */
+        }
+        .email-input:focus {
+            outline: none;
+            border: 2px solid #ffcc00; /* Highlight border on focus */
+        }
+        .purchase-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 15px; /* Added margin for spacing */
+        }
+        .purchase-button:hover {
+            background-color: #218838;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            text-decoration: underline;
+        }
+        #paypal-button-container {
+            margin-top: 15px; /* Added margin to create space above the PayPal button */
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #333;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Payment - Static Shop</h1>
+    </header>
+
+    <section id="payment">
+        <h2>Complete Your Purchase</h2>
+        <div class="product">
+            <h3>13,600 V-Bucks Account</h3>
+            <p>Price: €32.99</p>
+            <input type="email" id="customer-email" class="email-input" placeholder="Enter your email" required>
+            <div id="paypal-button-container"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Static Shop &copy; 2024</p>
+    </footer>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ASqSsAe85SF3mLzt1gXoD7u6qhw_jQVjff9C6SQODC8zHDX3xFAfZZ3LIapAnNEDTzo9mpmVIPKZmyB3&currency=EUR"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function(){
+            emailjs.init("mnMQx2uaOLIBkwvj6"); // Replace with your Public Key
+        })();
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                const email = document.getElementById('customer-email').value;
+                if (!email) {
+                    alert("Please enter your email.");
+                    return;
+                }
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '32.99'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    const email = document.getElementById('customer-email').value;
+                    
+                    // Use EmailJS to send email notification to you
+                    emailjs.send("service_zjmvr2s", "template_xcfa88h", {
+                        customer_email: email,
+                        product: "13,600 V-Bucks Account"
+                    })
+                    .then(function(response) {
+                        alert('Payment completed! We have received your email and will send your product shortly.');
+                    }, function(error) {
+                        alert('Payment successful, but there was an error saving the email, don’t panic! Contact me via email and we can resolve this issue.');
+                    });
+                });
+            },
+            onCancel: function(data) {
+                alert('Payment was cancelled');
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
